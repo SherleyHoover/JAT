@@ -51,7 +51,7 @@ async function new_searchFlights() {
     try {
 
         const new_response = await axios.post(
-             `${API_BASE_URL}/api/flights/search/new/`,
+            `${API_BASE_URL}/api/flights/search/new/`,
             {
                 query: userQuery.value,
                 departure_date: departure_date.value

@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,12 +20,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-jzv)bm%p4-32r6fn%zk&n_x0mkj8hj$0ul+7am8pwr&c2$9w$z'
+SECRET_KEY = os.getenv(
+    "DJANGO_SECRET_KEY",
+    "django-development-key"
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
 from dotenv import load_dotenv
-import os
+#import os
+
+DEBUG = os.getenv("DEBUG", "True") == "True"
 
 load_dotenv()
 
@@ -57,6 +62,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -64,7 +70,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+   
 ]
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",

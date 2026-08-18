@@ -32,7 +32,13 @@ load_dotenv()
 DUFFEL_ACCESS_TOKEN = os.getenv(
     "DUFFEL_ACCESS_TOKEN"
 )
-ALLOWED_HOSTS = []
+DEEPSEEK_API_KEY = os.getenv(
+    "DEEPSEEK_API_KEY"
+)
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+]
 
 
 # Application definition

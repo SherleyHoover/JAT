@@ -2,6 +2,7 @@
 import UniLogo from './assets/URT.png'
 import { ref } from "vue"
 import axios from "axios"
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
 const origin = ref("")
 const destination = ref("")
@@ -30,7 +31,7 @@ function showFlight(flight) {
 async function searchFlights(){
     status.value = "pending"
     const response = await axios.post(
-        "http://127.0.0.1:8000/api/flights/search/",
+         `${API_BASE_URL}/api/flights/search/`,
         {
             origin: origin.value,
             destination: destination.value,
@@ -50,7 +51,7 @@ async function new_searchFlights() {
     try {
 
         const new_response = await axios.post(
-            "http://127.0.0.1:8000/api/flights/search/new/",
+             `${API_BASE_URL}/api/flights/search/new/`,
             {
                 query: userQuery.value,
                 departure_date: departure_date.value

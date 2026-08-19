@@ -142,7 +142,10 @@ class newFlightSearchAPIView(APIView):
     airport.iata_code
     for airport in destination_airports
 ]       
-        
+        print("Origin airports:", list(origin_airports.values("iata_code", "city")))
+        print("Destination airports:", list(destination_airports.values("iata_code", "city")))
+        print("Origin airport count:", origin_airports.count())
+        print("Destination airport count:", destination_airports.count())
         #======================================
         #Generate All Available Pairs of Airports
         #======================================

@@ -40,12 +40,11 @@ DUFFEL_ACCESS_TOKEN = os.getenv(
 DEEPSEEK_API_KEY = os.getenv(
     "DEEPSEEK_API_KEY"
 )
-ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "localhost",
-]
-
-
+ALLOWED_HOSTS = os.getenv(
+    "ALLOWED_HOSTS",
+    "127.0.0.1,localhost"
+).split(",")
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Application definition
 
 INSTALLED_APPS = [
@@ -72,9 +71,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
    
 ]
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-]
+CORS_ALLOWED_ORIGINS = os.getenv(
+    "CORS_ALLOWED_ORIGINS",
+    "http://localhost:5173"
+).split(",")
 ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [

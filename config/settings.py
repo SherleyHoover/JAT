@@ -73,7 +73,8 @@ MIDDLEWARE = [
 ]
 CORS_ALLOWED_ORIGINS = os.getenv(
     "CORS_ALLOWED_ORIGINS",
-    "http://localhost:5173"
+    "http://localhost:5173",
+    "https://jat-urt.onrender.com",
 ).split(",")
 ROOT_URLCONF = 'config.urls'
 

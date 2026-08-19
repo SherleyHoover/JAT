@@ -136,19 +136,26 @@ class newFlightSearchAPIView(APIView):
         # Get All Available Airport IATA Codes
         # =====================================
         print("========== BEFORE AIRPORT CODE EXTRACTION ==========")
-        origin_codes = [
-    airport.iata_code
-    for airport in origin_airports
-]
 
-        destination_codes = [
-    airport.iata_code
-    for airport in destination_airports
-]       
-        print("Origin codes:", origin_codes)
-        print("Destination codes:", destination_codes)
+        try:
+         origin_codes = [
+        airport.iata_code
+        for airport in origin_airports
+    ]
 
-        print("========== AFTER AIRPORT CODE EXTRACTION ==========")
+         destination_codes = [
+        airport.iata_code
+        for airport in destination_airports
+    ]
+
+         print("Origin codes:", origin_codes)
+         print("Destination codes:", destination_codes)
+
+        except Exception as e:
+           print("========== AIRPORT CODE EXTRACTION ERROR ==========")
+           print(type(e).__name__)
+           print(str(e))
+           raise
         print("Origin airports:", list(origin_airports.values("iata_code", "city")))
         print("Destination airports:", list(destination_airports.values("iata_code", "city")))
         print("Origin airport count:", origin_airports.count())

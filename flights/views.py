@@ -72,6 +72,7 @@ class newFlightSearchAPIView(APIView):
         destination_city = intent.get(
             "destination_city"
         )
+        print("========== BEFORE AIRPORT DATABASE QUERY ==========")
         origin_airports = Airport_Data.objects.filter(
         city__iexact=origin_city
 )
@@ -79,6 +80,7 @@ class newFlightSearchAPIView(APIView):
         destination_airports = Airport_Data.objects.filter(
         city__iexact=destination_city
 )
+        print("========== AFTER AIRPORT DATABASE QUERY ==========")
         # =====================================
         # 5. Extract weights
         # =====================================
@@ -203,6 +205,7 @@ class FlightSearchAPIView(APIView):
 
     def post(self, request):
         print(request)
+        
         search_request = {
 
             "origin":

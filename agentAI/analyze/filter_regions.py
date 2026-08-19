@@ -46,7 +46,28 @@ def filter_by_airline_region(flights):
         if airline_status.get(airline_code, False):
             filtered_flights.append(flight)
             
-   
+    # Now add country ONLY to the flights we're keeping
+    remaining_codes = set(
+        flight["airline"]["iata_code"]
+        for flight in filtered_flights
+    )
+
+    airlines = Airline_Data.objects.filter(
+        iata_code__in=remaining_codes
+    )
+
+    airline_country = {}
+
+    for airline in airlines:
+        airline_country[airline.iata_code] = airline.country
+
+    for flight in filtered_flights:
+        airline_code = flight["airline"]["iata_code"]
+
+        if airline_code in airline_country:
+            flight["airline"]["country"] = airline_country[
+                airline_code
+            ]
     
 
     return filtered_flights
